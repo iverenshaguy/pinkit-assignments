@@ -23,8 +23,13 @@
 
 <body>
     <?php
-    // if (isset($_POST['submit'])) didn't work for me. I need an explanation
+    // if (isset($_POST['submit'])) didn't work for me. 
+    //I need an explanation
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            //if the request method to the server is 'post' then echo the code below.
+            //I used post so that the input won't show as part of my request url.
+            //htmlspecialchars protects my form by converting any some unwanted characters like < to &lt etc.
+            //(int) also protects my code by converting any input to integer.
             echo 'Hi '.htmlspecialchars($_POST['name']).'.'.'<br>';
             echo 'You are '.(int)$_POST['age'].' years old.'.'<br>';
             echo 'You live in '.htmlspecialchars($_POST['city']).'.';
