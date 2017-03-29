@@ -2,18 +2,31 @@
 <html>
 <head>
 <title>Grading System</title>
+<style>
+        form {
+            width: 300px;
+            margin: auto;
+            padding-top: 100px;
+        }
+        
+        input {
+            padding: 8px 3px;
+            width: 100%;
+        }
+        
+        #button {
+            width: 103%;
+        }
+</style>
 </head>
 
 <body>
 
-<?php
-//We simply use the switch or if...else--elseif statement.
+	<?php
+	//We simply use the switch or if...else--elseif statement.
 
-function getgrade($score) {
+	function getgrade($score) {
   	/*switch ($score) {
-      case (!is_int($score)):
-        echo ""Please enter a valid number";
-        break;
   		case $score > 79 && $score <= 100:
   			echo "A";
   			break;
@@ -36,9 +49,7 @@ function getgrade($score) {
   			echo "Please enter a valid number";
   	}*/
     
-  		if (!is_int($score)) {
-  			echo "Please enter a valid number";
-      } else if ($score > 79 && $score <= 100) {
+  		if ($score > 79 && $score <= 100) {
   			echo "A";
       } else if ($score > 69 && $score <= 79) {
   			echo "B";
@@ -55,11 +66,16 @@ function getgrade($score) {
       }   
   }
 
-  getgrade(81);
+	?>
 
-?>
-
+	<form method="post">
+    <input type="number" name="num" placeholder="Enter the score" required><br><br>
+    <input value="<?php
+				if(isset($_POST['submit'])) {
+            $score = $_POST['num'];
+            echo getgrade($score);}?>" readonly><br><br>
+    <input type="submit" name="submit" id="button" value="SUBMIT">
+	</form>
 </body>
-
 
 </html>
